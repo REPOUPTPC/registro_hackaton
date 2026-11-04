@@ -892,6 +892,334 @@
       transform: translateY(-1px);
       box-shadow: 0 4px 15px rgba(0, 210, 255, 0.25);
     }
+
+    /* Top Bar Actions & Admin Trigger Button */
+    .top-bar-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .btn-admin-trigger {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.38rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(0, 210, 255, 0.12);
+      border: 1px solid rgba(0, 210, 255, 0.4);
+      color: #7dd3fc;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-admin-trigger:hover {
+      background: rgba(0, 210, 255, 0.28);
+      color: #ffffff;
+      box-shadow: 0 0 16px rgba(0, 210, 255, 0.35);
+      transform: translateY(-1px);
+    }
+
+    /* Admin Modal Overlay & Container */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(2, 6, 16, 0.84);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      animation: fadeIn 0.22s ease-out;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal-window {
+      width: 100%;
+      max-width: 460px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(160deg, rgba(10, 22, 47, 0.98), rgba(5, 13, 30, 0.98));
+      border: 1.5px solid rgba(0, 210, 255, 0.4);
+      border-radius: var(--radius-xl);
+      box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.85),
+        0 0 45px rgba(0, 180, 255, 0.2);
+      overflow: hidden;
+      transition: max-width 0.3s ease;
+    }
+
+    .modal-window.expanded {
+      max-width: 1040px;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 1.15rem 1.35rem;
+      background: rgba(3, 9, 20, 0.75);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.22);
+    }
+
+    .modal-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .modal-header-left img {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: #fff;
+      padding: 3px;
+      object-fit: contain;
+    }
+
+    .modal-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.03em;
+    }
+
+    .modal-subtitle {
+      font-size: 0.73rem;
+      color: var(--text-muted);
+    }
+
+    .btn-close-modal {
+      appearance: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(15, 30, 60, 0.6);
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .btn-close-modal:hover {
+      background: rgba(244, 63, 94, 0.2);
+      border-color: #f43f5e;
+      color: #ffffff;
+    }
+
+    .modal-body {
+      padding: 1.35rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* Admin Dashboard Toolbar & Table */
+    .admin-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      background: rgba(3, 9, 20, 0.65);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      padding: 0.85rem 1rem;
+      border-radius: 14px;
+    }
+
+    .admin-stats {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 10px;
+      background: rgba(0, 210, 255, 0.14);
+      border: 1px solid rgba(0, 210, 255, 0.35);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #7dd3fc;
+    }
+
+    .stat-badge strong {
+      font-family: 'Orbitron', sans-serif;
+      color: #ffffff;
+      font-size: 0.92rem;
+    }
+
+    .admin-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    @media (min-width: 640px) {
+      .admin-actions {
+        width: auto;
+      }
+    }
+
+    .admin-search-input {
+      flex: 1;
+      min-width: 200px;
+      background: rgba(6, 15, 34, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 10px;
+      padding: 0.58rem 0.85rem;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.84rem;
+      outline: none;
+    }
+
+    .admin-search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.15);
+    }
+
+    .btn-csv {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.6rem 1rem;
+      border-radius: 10px;
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+      color: #ffffff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.35);
+      transition: all 0.2s ease;
+    }
+
+    .btn-csv:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.08);
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.5);
+    }
+
+    .btn-icon-action {
+      appearance: none;
+      padding: 0.58rem 0.75rem;
+      border-radius: 10px;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      background: rgba(15, 30, 60, 0.7);
+      color: #7dd3fc;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-icon-action:hover {
+      background: rgba(0, 210, 255, 0.2);
+      color: #ffffff;
+    }
+
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      border-radius: 14px;
+      background: rgba(3, 9, 20, 0.6);
+      max-height: 52vh;
+      overflow-y: auto;
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.82rem;
+      min-width: 680px;
+    }
+
+    .admin-table th {
+      position: sticky;
+      top: 0;
+      background: #06132d;
+      color: #7dd3fc;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.8rem 0.9rem;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.28);
+      z-index: 2;
+    }
+
+    .admin-table td {
+      padding: 0.75rem 0.9rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+      color: #e2e8f0;
+      vertical-align: middle;
+    }
+
+    .admin-table tbody tr:hover {
+      background: rgba(0, 210, 255, 0.07);
+    }
+
+    .td-cedula {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .td-pnf-pill {
+      display: inline-block;
+      padding: 0.22rem 0.55rem;
+      border-radius: 6px;
+      background: rgba(56, 189, 248, 0.14);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #bae6fd;
+      font-size: 0.74rem;
+      font-weight: 600;
+    }
+
+    .empty-table-msg {
+      text-align: center;
+      padding: 2.2rem 1rem;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
   </style>
 </head>
 <body>
@@ -907,9 +1235,15 @@
           <span class="brand-mini-sub">HACKATON CARABOBO 2026</span>
         </div>
       </a>
-      <div class="status-pill">
-        <span class="status-dot"></span>
-        <span>Certificación Activa</span>
+      <div class="top-bar-actions">
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span>Certificación Activa</span>
+        </div>
+        <button type="button" class="btn-admin-trigger" onclick="openAdminModal()" title="Panel de Gestión Ciencia y Tecnología">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>Panel CYT</span>
+        </button>
       </div>
     </div>
   </header>
@@ -1242,6 +1576,134 @@
     </div>
   </footer>
 
+  <!-- MODAL DE ADMINISTRACIÓN (CIENCIA Y TECNOLOGÍA) -->
+  <div id="adminModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+    <div id="adminModalWindow" class="modal-window">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <img src="/img/cyt.png" alt="Logo CYT UPTPC" />
+          <div>
+            <h3 class="modal-title" id="adminModalTitle">Acceso Ciencia y Tecnología</h3>
+            <p class="modal-subtitle" id="adminModalSub">Gestión de Integrantes y Certificados · HACKATON 2026</p>
+          </div>
+        </div>
+        <button type="button" class="btn-close-modal" onclick="closeAdminModal()" aria-label="Cerrar modal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Alerta de Error del Modal -->
+        <div id="adminAlertBox" class="alert-box alert-error" role="alert">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span id="adminAlertText"></span>
+        </div>
+
+        <!-- Vista 1: Formulario de Login -->
+        <form id="adminLoginForm" novalidate>
+          <div class="form-group">
+            <label for="admin_user" class="form-label">
+              <span>USUARIO AUTORIZADO</span>
+              <span class="req">Requerido *</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </span>
+              <input
+                type="text"
+                id="admin_user"
+                class="form-input"
+                placeholder="Usuario de administración"
+                required
+                autocomplete="username"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="admin_pass" class="form-label">
+              <span>CLAVE DE ACCESO</span>
+              <span class="req">Requerido *</span>
+            </label>
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </span>
+              <input
+                type="password"
+                id="admin_pass"
+                class="form-input"
+                placeholder="••••••••••••"
+                required
+                autocomplete="current-password"
+              />
+            </div>
+          </div>
+
+          <button type="submit" id="adminLoginBtn" class="btn-submit">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+            <span>Ingresar al Listado</span>
+          </button>
+        </form>
+
+        <!-- Vista 2: Panel con Tabla de Integrantes y Descarga CSV -->
+        <div id="adminDataView" style="display: none;">
+          <div class="admin-toolbar">
+            <div class="admin-stats">
+              <div class="stat-badge">
+                <span>Total Registrados:</span>
+                <strong id="adminTotalCount">0</strong>
+              </div>
+            </div>
+
+            <div class="admin-actions">
+              <input
+                type="search"
+                id="adminSearchInput"
+                class="admin-search-input"
+                placeholder="Buscar por cédula, nombre o PNF..."
+                oninput="filterAdminTable()"
+              />
+              <button type="button" class="btn-icon-action" onclick="refreshAdminList()" title="Actualizar lista">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                <span>Actualizar</span>
+              </button>
+              <button type="button" class="btn-csv" onclick="downloadParticipantesCSV()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Descargar CSV</span>
+              </button>
+              <button type="button" class="btn-icon-action" onclick="logoutAdmin()" title="Cerrar sesión">
+                <span>Salir</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="table-container" style="margin-top: 0.9rem;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Cédula</th>
+                  <th>Nombre Completo</th>
+                  <th>Teléfono</th>
+                  <th>Correo Electrónico</th>
+                  <th>PNF / Programa</th>
+                  <th>Fecha Registro</th>
+                </tr>
+              </thead>
+              <tbody id="adminTableBody">
+                <tr>
+                  <td colspan="7" class="empty-table-msg">Cargando integrantes...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     const registroForm = document.getElementById('registroForm');
     const checkForm = document.getElementById('checkForm');
@@ -1445,6 +1907,218 @@
         checkBtn.innerHTML = originalBtnHTML;
       }
     });
+
+    // ==========================================
+    // MODAL DE ADMINISTRACIÓN Y DESCARGA CSV
+    // ==========================================
+    const adminModal = document.getElementById('adminModal');
+    const adminModalWindow = document.getElementById('adminModalWindow');
+    const adminLoginForm = document.getElementById('adminLoginForm');
+    const adminDataView = document.getElementById('adminDataView');
+    const adminAlertBox = document.getElementById('adminAlertBox');
+    const adminAlertText = document.getElementById('adminAlertText');
+    const adminLoginBtn = document.getElementById('adminLoginBtn');
+    const adminTableBody = document.getElementById('adminTableBody');
+    const adminTotalCount = document.getElementById('adminTotalCount');
+    const adminSearchInput = document.getElementById('adminSearchInput');
+
+    let adminSession = { user: '', pass: '' };
+    let cachedParticipantes = [];
+
+    function showAdminAlert(msg) {
+      adminAlertText.textContent = msg;
+      adminAlertBox.classList.add('show');
+    }
+
+    function hideAdminAlert() {
+      adminAlertBox.classList.remove('show');
+    }
+
+    function openAdminModal() {
+      hideAdminAlert();
+      adminModal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+      if (!adminSession.user) {
+        setTimeout(() => document.getElementById('admin_user').focus(), 100);
+      }
+    }
+
+    function closeAdminModal() {
+      adminModal.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    // Cerrar al hacer clic en el fondo oscuro o con tecla Escape
+    adminModal.addEventListener('click', (e) => {
+      if (e.target === adminModal) closeAdminModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && adminModal.classList.contains('show')) {
+        closeAdminModal();
+      }
+    });
+
+    function escapeHTML(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function renderAdminTable(list) {
+      adminTotalCount.textContent = String(list.length);
+      if (!list.length) {
+        adminTableBody.innerHTML = '<tr><td colspan="7" class="empty-table-msg">No se encontraron integrantes registrados.</td></tr>';
+        return;
+      }
+
+      adminTableBody.innerHTML = list.map((item, idx) => `
+        <tr>
+          <td>${idx + 1}</td>
+          <td class="td-cedula">V-${escapeHTML(item.cedula)}</td>
+          <td style="font-weight:700;color:#fff;">${escapeHTML(item.nombre_completo)}</td>
+          <td>${escapeHTML(item.telefono)}</td>
+          <td>${escapeHTML(item.correo_electronico)}</td>
+          <td><span class="td-pnf-pill">[${escapeHTML(item.pnf_id)}] ${escapeHTML(item.pnf_nombre)}</span></td>
+          <td style="color:#94a3b8;font-size:0.76rem;white-space:nowrap;">${escapeHTML(item.fecha_registro)}</td>
+        </tr>
+      `).join('');
+    }
+
+    function filterAdminTable() {
+      const q = (adminSearchInput.value || '').trim().toLowerCase();
+      if (!q) {
+        renderAdminTable(cachedParticipantes);
+        return;
+      }
+      const filtered = cachedParticipantes.filter((p) =>
+        String(p.cedula).toLowerCase().includes(q) ||
+        String(p.nombre_completo).toLowerCase().includes(q) ||
+        String(p.pnf_nombre).toLowerCase().includes(q) ||
+        String(p.correo_electronico).toLowerCase().includes(q)
+      );
+      renderAdminTable(filtered);
+    }
+
+    async function fetchAdminParticipantes(user, pass) {
+      const res = await fetch('/api/registro?action=list', {
+        method: 'GET',
+        headers: {
+          'x-admin-user': user,
+          'x-admin-pass': pass
+        }
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) {
+        throw new Error(data.message || 'Credenciales inválidas o error de servidor.');
+      }
+      return data.participantes || [];
+    }
+
+    adminLoginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      hideAdminAlert();
+
+      const user = document.getElementById('admin_user').value.trim();
+      const pass = document.getElementById('admin_pass').value.trim();
+
+      if (!user || !pass) {
+        return showAdminAlert('Por favor ingresa el usuario y la clave de acceso.');
+      }
+
+      const originalHTML = adminLoginBtn.innerHTML;
+      adminLoginBtn.disabled = true;
+      adminLoginBtn.innerHTML = '<span class="spinner"></span><span>Verificando Acceso...</span>';
+
+      try {
+        const list = await fetchAdminParticipantes(user, pass);
+        adminSession = { user, pass };
+        cachedParticipantes = list;
+
+        adminLoginForm.style.display = 'none';
+        adminDataView.style.display = 'block';
+        adminModalWindow.classList.add('expanded');
+        document.getElementById('adminModalTitle').textContent = 'Listado Oficial de Integrantes';
+        renderAdminTable(cachedParticipantes);
+      } catch (err) {
+        showAdminAlert(err.message);
+      } finally {
+        adminLoginBtn.disabled = false;
+        adminLoginBtn.innerHTML = originalHTML;
+      }
+    });
+
+    async function refreshAdminList() {
+      if (!adminSession.user) return;
+      hideAdminAlert();
+      try {
+        cachedParticipantes = await fetchAdminParticipantes(adminSession.user, adminSession.pass);
+        filterAdminTable();
+      } catch (err) {
+        showAdminAlert(err.message);
+      }
+    }
+
+    function logoutAdmin() {
+      adminSession = { user: '', pass: '' };
+      cachedParticipantes = [];
+      adminLoginForm.reset();
+      adminSearchInput.value = '';
+      adminDataView.style.display = 'none';
+      adminLoginForm.style.display = 'block';
+      adminModalWindow.classList.remove('expanded');
+      document.getElementById('adminModalTitle').textContent = 'Acceso Ciencia y Tecnología';
+      hideAdminAlert();
+    }
+
+    function escapeCSVCell(val) {
+      const str = String(val ?? '').replace(/"/g, '""');
+      return `"${str}"`;
+    }
+
+    function downloadParticipantesCSV() {
+      if (!cachedParticipantes.length) {
+        return showAdminAlert('No hay registros disponibles para exportar en este momento.');
+      }
+
+      const headers = [
+        'ID',
+        'CEDULA',
+        'NOMBRE_COMPLETO',
+        'TELEFONO',
+        'CORREO_ELECTRONICO',
+        'PNF_ID',
+        'PROGRAMA_DE_FORMACION',
+        'FECHA_REGISTRO'
+      ];
+
+      const rows = cachedParticipantes.map((p) => [
+        escapeCSVCell(p.id),
+        escapeCSVCell(p.cedula),
+        escapeCSVCell(p.nombre_completo),
+        escapeCSVCell(p.telefono),
+        escapeCSVCell(p.correo_electronico),
+        escapeCSVCell(p.pnf_id),
+        escapeCSVCell(p.pnf_nombre),
+        escapeCSVCell(p.fecha_registro)
+      ].join(','));
+
+      // Se incluye BOM UTF-8 (\uFEFF) para que Excel abra acentos y caracteres especiales correctamente
+      const csvContent = '\uFEFF' + [headers.join(','), ...rows].join('\r\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      const dateStamp = new Date().toISOString().slice(0, 10);
+      link.setAttribute('href', url);
+      link.setAttribute('download', `integrantes_hackaton_uptpc_2026_${dateStamp}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
   </script>
 </body>
 </html>

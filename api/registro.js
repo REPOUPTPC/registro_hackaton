@@ -43,8 +43,76 @@ module.exports = async function handler(req, res) {
     return res.status(200).end();
   }
 
-  // Consulta por cédula (GET /api/registro?cedula=...)
+  // Consulta por cédula o listado de administrador (GET /api/registro)
   if (req.method === 'GET') {
+    // Modo Administrador: Ver lista completa de integrantes
+    if (req.query?.action === 'list') {
+      const adminUser = req.headers['x-admin-user'] || req.query?.user;
+      const adminPass = req.headers['x-admin-pass'] || req.query?.pass;
+
+      if (adminUser !== 'CIENCIA_TECNOLOGIA' || adminPass !== 'CYT_01012023') {
+        return res.status(401).json({
+          ok: false,
+          message: 'Credenciales de acceso inválidas. Verifique usuario y contraseña.'
+        });
+      }
+
+      try {
+        const data = await executeTursoPipeline([
+          {
+            type: 'execute',
+            stmt: {
+              sql: `CREATE TABLE IF NOT EXISTS participantes (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                cedula TEXT NOT NULL UNIQUE,
+                nombre_completo TEXT NOT NULL,
+                telefono TEXT NOT NULL,
+                correo_electronico TEXT NOT NULL,
+                pnf_id INTEGER NOT NULL,
+                pnf_nombre TEXT NOT NULL,
+                fecha_registro TEXT DEFAULT (datetime('now', '-4 hours'))
+              );`
+            }
+          },
+          {
+            type: 'execute',
+            stmt: {
+              sql: 'SELECT id, cedula, nombre_completo, telefono, correo_electronico, pnf_id, pnf_nombre, fecha_registro FROM participantes ORDER BY id DESC;'
+            }
+          }
+        ]);
+
+        const resultObj = data?.results?.[1];
+        if (resultObj?.type === 'error') {
+          throw new Error(resultObj.error?.message || 'Error consultando listado de participantes');
+        }
+
+        const rows = resultObj?.response?.result?.rows || [];
+        const participantes = rows.map((r) => ({
+          id: Number(r[0]?.value),
+          cedula: r[1]?.value || '',
+          nombre_completo: r[2]?.value || '',
+          telefono: r[3]?.value || '',
+          correo_electronico: r[4]?.value || '',
+          pnf_id: Number(r[5]?.value),
+          pnf_nombre: r[6]?.value || '',
+          fecha_registro: r[7]?.value || ''
+        }));
+
+        return res.status(200).json({
+          ok: true,
+          total: participantes.length,
+          participantes
+        });
+      } catch (err) {
+        return res.status(500).json({
+          ok: false,
+          message: 'Error al obtener la lista de integrantes.',
+          detail: err.message
+        });
+      }
+    }
+
     const rawCedula = String(req.query?.cedula || '').replace(/\D/g, '');
     if (!rawCedula) {
       return res.status(400).json({ ok: false, message: 'Por favor ingresa un número de cédula válido.' });
